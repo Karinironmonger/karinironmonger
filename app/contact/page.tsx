@@ -1,10 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Footer, TopBar } from "@/components/SiteChrome";
 import { useSiteMotion } from "@/components/useSiteMotion";
 
 export default function ContactPage() {
   useSiteMotion();
+  /* formsubmit.co requires an absolute URL for _next; resolve it client-side. */
+  const [thanksUrl, setThanksUrl] = useState("https://karinironmonger.com/thanks");
+  useEffect(() => setThanksUrl(`${window.location.origin}/thanks`), []);
   return (
     <>
       <TopBar active="contact" progress={false} />
@@ -19,7 +24,7 @@ export default function ContactPage() {
             <p data-reveal="140" style={{ "fontFamily": "'Instrument Sans','Assistant',sans-serif", "fontSize": "17px", "lineHeight": "1.6", "color": "rgba(246,244,240,.66)", "maxWidth": "42ch", "margin": "clamp(22px,3vw,30px) 0 0" }}>Leave your details and I’ll come back to you.</p>
             <div data-reveal="200" style={{ "margin": "clamp(30px,4vw,44px) 0 0", "paddingTop": "24px", "borderTop": "1px solid rgba(246,244,240,.14)", "display": "flex", "flexDirection": "column", "alignItems": "flex-start", "gap": "14px" }}>
               <a href="mailto:Karinironmonger@gmail.com" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">Karinironmonger@gmail.com</a>
-              <a href="https://www.linkedin.com/in/karinironmonge" target="_blank" rel="noopener" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">linkedin.com/in/karinironmonge</a>
+              <a href="https://www.linkedin.com/in/karinironmonger" target="_blank" rel="noopener" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">linkedin.com/in/karinironmonger</a>
               <a href="tel:+972523533421" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">052-3533421</a>
             </div>
           </div>
@@ -27,7 +32,7 @@ export default function ContactPage() {
           <form data-reveal="120" action="https://formsubmit.co/Karinironmonger@gmail.com" method="POST" style={{ "flex": "1 1 420px", "padding": "clamp(26px,3.6vw,44px)", "borderRadius": "20px", "border": "1px solid rgba(246,244,240,.16)", "background": "rgba(246,244,240,.05)", "backdropFilter": "blur(6px)" }}>
             <input type="hidden" name="_subject" value="New message from your website" />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="/thanks" />
+            <input type="hidden" name="_next" value={thanksUrl} />
             <input type="text" name="_honey" style={{ "display": "none" }} />
       
             <div style={{ "margin": "0 0 20px" }}>

@@ -35,7 +35,9 @@ export default function ProfilePage() {
   const active = TRACKS[track];
   const fadeOpacity = fading ? "0" : "1";
   const fadeShift = fading ? "8px" : "0px";
-  const cvHref = `/cv/Karin-Barak-Ironmonger-${active.key}.pdf`;
+  /* Track keys map to the CV page variants; the PDFs under public/cv/ do not exist yet. */
+  const CV_VARIANT: Record<string, string> = { people: "general", ops: "operations", brand: "branding", events: "events" };
+  const cvHref = `/cv?v=${CV_VARIANT[active.key] ?? "general"}`;
   const showing = `Showing the ${active.tab[0]} version`;
 
   const tabs = useMemo(
@@ -74,7 +76,7 @@ export default function ProfilePage() {
               <h1 data-reveal="90" style={{ "fontFamily": "'Fraunces','Frank Ruhl Libre',Georgia,serif", "fontVariationSettings": "'SOFT' 40,'WONK' 1,'opsz' 144", "fontWeight": 300, "fontSize": "clamp(52px,10.5vw,146px)", "lineHeight": ".88", "letterSpacing": "-.04em", "margin": 0 }}>Karin Barak<br /><span style={{ "fontWeight": 600 }}>Ironmonger</span></h1>
               <div data-reveal="200" style={{ "display": "flex", "flexWrap": "wrap", "gap": "14px 26px", "alignItems": "center", "margin": "clamp(34px,5vw,54px) 0 0" }}>
                 <a href="mailto:Karinironmonger@gmail.com" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">Karinironmonger@gmail.com</a>
-                <a href="https://www.linkedin.com/in/karinironmonge" target="_blank" rel="noopener" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/karinironmonger" target="_blank" rel="noopener" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">LinkedIn</a>
                 <a href="tel:+972523533421" style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".08em", "textTransform": "uppercase", "color": "#F6F4F0", "textDecoration": "none", "borderBottom": "1px solid rgba(185,163,217,.7)", "paddingBottom": "4px", "transition": "border-color .25s ease" }} className="hb-3">052-3533421</a>
               </div>
             </div>
@@ -113,9 +115,9 @@ export default function ProfilePage() {
               <p style={{ "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "9.5px", "letterSpacing": ".15em", "textTransform": "uppercase", "color": "#4A6A5E", "margin": "0 0 16px" }}>{trackTitle}</p>
               <p style={{ "fontFamily": "'Fraunces','Frank Ruhl Libre',Georgia,serif", "fontVariationSettings": "'SOFT' 30,'WONK' 1", "fontWeight": 400, "fontSize": "clamp(24px,3.2vw,38px)", "lineHeight": "1.16", "letterSpacing": "-.026em", "margin": "0 0 20px", "color": "#123A2E" }}>{trackLine}</p>
               <p style={{ "fontFamily": "'Instrument Sans','Assistant',sans-serif", "fontSize": "16.5px", "lineHeight": "1.62", "color": "#4A6A5E", "margin": 0 }}>{trackText}</p>
-              <a href={cvHref} download style={{ "display": "inline-flex", "alignItems": "center", "gap": "10px", "marginTop": "clamp(26px,3.4vw,36px)", "textDecoration": "none", "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".1em", "textTransform": "uppercase", "color": "#F6F4F0", "background": "#123A2E", "border": "1px solid #123A2E", "borderRadius": "999px", "padding": "15px 24px", "transition": "transform .2s ease,background-color .2s ease" }} className="hb-5">
-                <span>Download the CV</span>
-                <span aria-hidden="true" style={{ "fontFamily": "'Instrument Sans','Assistant',sans-serif", "fontSize": "13px" }}>&darr;</span>
+              <a href={cvHref} style={{ "display": "inline-flex", "alignItems": "center", "gap": "10px", "marginTop": "clamp(26px,3.4vw,36px)", "textDecoration": "none", "fontFamily": "'Martian Mono','Assistant',ui-monospace,monospace", "fontSize": "10.5px", "letterSpacing": ".1em", "textTransform": "uppercase", "color": "#F6F4F0", "background": "#123A2E", "border": "1px solid #123A2E", "borderRadius": "999px", "padding": "15px 24px", "transition": "transform .2s ease,background-color .2s ease" }} className="hb-5">
+                <span>View the CV</span>
+                <span aria-hidden="true" style={{ "fontFamily": "'Instrument Sans','Assistant',sans-serif", "fontSize": "13px" }}>&rarr;</span>
               </a>
             </div>
           </div>

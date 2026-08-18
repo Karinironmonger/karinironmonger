@@ -20,7 +20,7 @@ export default async function CvPage({ searchParams }: { searchParams: Promise<S
             </div>
             <p style={{ "fontFamily": "'Instrument Sans',sans-serif", "fontSize": "9.5pt", "lineHeight": "1.7", "color": "#4A6A5E", "margin": 0, "textAlign": "right" }}>
               <a href="mailto:Karinironmonger@gmail.com" style={{ "color": "#123A2E", "textDecoration": "none", "borderBottom": "1px solid #B9A3D9" }}>Karinironmonger@gmail.com</a><br />
-              <a href="https://www.linkedin.com/in/karinironmonge" style={{ "color": "#123A2E", "textDecoration": "none", "borderBottom": "1px solid #B9A3D9" }}>linkedin.com/in/karinironmonger</a><br />
+              <a href="https://www.linkedin.com/in/karinironmonger" style={{ "color": "#123A2E", "textDecoration": "none", "borderBottom": "1px solid #B9A3D9" }}>linkedin.com/in/karinironmonger</a><br />
               <a href="tel:+972523533421" style={{ "color": "#123A2E", "textDecoration": "none", "borderBottom": "1px solid #B9A3D9" }}>052-3533421</a>
             </p>
           </header>
