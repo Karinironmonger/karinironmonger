@@ -8,8 +8,7 @@ Next.js (App Router) + TypeScript. Deploys to Vercel with no extra configuration
 | --- | --- |
 | `/` | Profile: opening screen, about, field selector, numbers, experience |
 | `/social` | LinkedIn posts, comments, Instagram galleries |
-| `/contact` | Contact form, posts to formsubmit.co |
-| `/thanks` | Form confirmation, set as the form's redirect target |
+| `/contact` | Direct contact details (email, LinkedIn, phone) |
 | `/cv` | Printable CV, four versions at `/cv?v=general|operations|branding|events` |
 
 ## Local development

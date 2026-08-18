@@ -8,7 +8,7 @@ const reduced = () =>
 
 /**
  * Quiet motion, ported from the original site: scroll reveal, gentle image
- * parallax, a scroll-progress hairline and a lilac cursor ring.
+ * parallax and a scroll-progress hairline.
  */
 export function useSiteMotion() {
   useEffect(() => {
@@ -86,64 +86,6 @@ export function useSiteMotion() {
       cleanups.push(() => {
         window.removeEventListener("scroll", tick);
         window.removeEventListener("resize", tick);
-      });
-    }
-
-    /* cursor ring */
-    if (window.matchMedia("(pointer: fine)").matches && !reduced()) {
-      const ring = document.createElement("div");
-      const dot = document.createElement("div");
-      ring.setAttribute("aria-hidden", "true");
-      dot.setAttribute("aria-hidden", "true");
-      Object.assign(ring.style, {
-        position: "fixed", top: "0", left: "0", width: "34px", height: "34px",
-        marginLeft: "-17px", marginTop: "-17px", borderRadius: "50%",
-        border: "1px solid rgba(185,163,217,.85)", pointerEvents: "none",
-        zIndex: "9999", opacity: "0",
-        transition: `opacity .3s ease, width .28s ${EASE}, height .28s ${EASE}, margin .28s ${EASE}, background-color .28s ease, border-color .28s ease`,
-      } as CSSStyleDeclaration);
-      Object.assign(dot.style, {
-        position: "fixed", top: "0", left: "0", width: "4px", height: "4px",
-        marginLeft: "-2px", marginTop: "-2px", borderRadius: "50%",
-        background: "#6E56A6", pointerEvents: "none", zIndex: "9999", opacity: "0",
-        transition: "opacity .3s ease",
-      } as CSSStyleDeclaration);
-      document.body.append(ring, dot);
-
-      let tx = 0, ty = 0, rx = 0, ry = 0, on = false, alive = true;
-      const move = (e: MouseEvent) => {
-        tx = e.clientX; ty = e.clientY;
-        dot.style.transform = `translate3d(${tx}px,${ty}px,0)`;
-        if (!on) { on = true; rx = tx; ry = ty; ring.style.opacity = "1"; dot.style.opacity = "1"; }
-      };
-      const leave = () => { on = false; ring.style.opacity = "0"; dot.style.opacity = "0"; };
-      const loop = () => {
-        if (!alive) return;
-        rx += (tx - rx) * 0.16; ry += (ty - ry) * 0.16;
-        ring.style.transform = `translate3d(${rx.toFixed(2)}px,${ry.toFixed(2)}px,0)`;
-        requestAnimationFrame(loop);
-      };
-      const hot = "a, button, input, textarea, select";
-      const grow = (big: boolean) => {
-        ring.style.width = ring.style.height = big ? "62px" : "34px";
-        ring.style.marginLeft = ring.style.marginTop = big ? "-31px" : "-17px";
-        ring.style.backgroundColor = big ? "rgba(185,163,217,.16)" : "transparent";
-        ring.style.borderColor = big ? "rgba(185,163,217,.55)" : "rgba(185,163,217,.85)";
-      };
-      const over = (e: Event) => { if ((e.target as Element)?.closest?.(hot)) grow(true); };
-      const out = (e: Event) => { if ((e.target as Element)?.closest?.(hot)) grow(false); };
-      window.addEventListener("mousemove", move, { passive: true });
-      document.addEventListener("mouseleave", leave);
-      document.addEventListener("mouseover", over);
-      document.addEventListener("mouseout", out);
-      requestAnimationFrame(loop);
-      cleanups.push(() => {
-        alive = false;
-        window.removeEventListener("mousemove", move);
-        document.removeEventListener("mouseleave", leave);
-        document.removeEventListener("mouseover", over);
-        document.removeEventListener("mouseout", out);
-        ring.remove(); dot.remove();
       });
     }
 
