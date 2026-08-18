@@ -1,0 +1,74 @@
+/* Site-wide primitives. Everything else is inline on the elements. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #0B2A21;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+img { max-width: 100%; display: block; }
+
+::selection { background: #B9A3D9; color: #0B2A21; }
+:focus-visible { outline: 1px solid #B9A3D9; outline-offset: 4px; }
+
+a { color: #F6F4F0; }
+a:hover { color: #B9A3D9; }
+
+input::placeholder, textarea::placeholder { color: rgba(246, 244, 240, .35); }
+
+@keyframes kbiBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+@keyframes kbiDrift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(6%, 8%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Generated hover and focus states, ported from the design sources. */
+.hv-1:hover{color:#F6F4F0 !important;border-color:rgba(246,244,240,.22) !important}
+.hv-2:hover{transform:translateY(-1px) !important}
+.hv-3:hover{background-color:#B9A3D9 !important;color:#0B2A21 !important;border-color:#B9A3D9 !important}
+.hv-4:hover{transform:translateY(-2px) !important;background-color:#0B2A21 !important}
+.hv-5:hover{transform:translateY(-2px) !important}
+.hv-6:hover{background-color:#123A2E !important;color:#F6F4F0 !important}
+.hv-7:hover{transform:translateY(-2px) !important;background-color:#F6F4F0 !important}
+.hv-8:hover{color:#B9A3D9 !important}
+
+/* Printable CV sheet */
+.cv-sheet {
+  background: #FFFFFF;
+  color: #123A2E;
+  width: 8.5in;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.6in;
+}
+.cv-desk { background: #EDEBE6; padding: 32px 16px; min-height: 100vh; }
+
+@page { size: letter; margin: 0.6in; }
+
+@media print {
+  .cv-desk { background: #FFFFFF; padding: 0; min-height: 0; }
+  .cv-sheet { width: auto; padding: 0; }
+  .no-print { display: none !important; }
+  p, li { orphans: 3; widows: 3; }
+}
+
+.hv-nav:hover { color: #F6F4F0 !important; border-color: rgba(246, 244, 240, .22) !important; }
+.hv-lift:hover { transform: translateY(-1px); }
+.hv-lilac:hover { color: #B9A3D9 !important; }
+
+.hb-1:hover{color:#F6F4F0 !important;border-color:rgba(246,244,240,.22) !important}
+.hb-2:hover{transform:translateY(-1px) !important}
+.hb-3:hover{border-color:#F6F4F0 !important}
+.hb-4:hover{color:#F6F4F0 !important}
+.hb-5:hover{transform:translateY(-2px) !important;background-color:#0B2A21 !important}
+.hb-6:hover{transform:translateY(-2px) !important;background-color:#F6F4F0 !important}
+.hb-7:hover{color:#B9A3D9 !important}
+.fb-1:focus{border-color:#B9A3D9 !important;background:rgba(11,42,33,.75) !important}
+.hb-8:hover{border-color:#B9A3D9 !important}
