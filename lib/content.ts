@@ -217,7 +217,10 @@ export const ROLES = [
   }
 ];
 
-export function pointsFor(role: any, trackKey: string, lang: number) {
-  const set = role.points.all || role.points[trackKey];
-  return set.map((p: string[]) => p[lang]);
+type PointSets = Record<string, [string, string][] | undefined>;
+
+export function pointsFor(role: { points: PointSets }, trackKey: string, lang: number): string[] {
+  /* Roles carry either a single "all" set or one set per track key. */
+  const set = role.points.all || role.points[trackKey] || [];
+  return set.map((p) => p[lang]);
 }

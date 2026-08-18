@@ -136,10 +136,21 @@ export const VARIANTS = {
   }
 };
 
+export type CvVariant = {
+  label: string;
+  subtitle: string;
+  summary: string;
+  bullets: string[][];
+  skills: string[];
+};
+
+export type CvRole = { org: string; role: string; when: string; points: string[] };
+
 export function cv(key: string) {
-  const v = (VARIANTS as any)[key] || VARIANTS.general;
+  const variants: Record<string, CvVariant | undefined> = VARIANTS;
+  const v = variants[key] || VARIANTS.general;
   return {
     ...v,
-    roles: ROLE_HEADS.map((h, i) => ({ ...h, points: (v.bullets as string[][])[i] }))
+    roles: ROLE_HEADS.map((h, i): CvRole => ({ ...h, points: v.bullets[i] }))
   };
 }
